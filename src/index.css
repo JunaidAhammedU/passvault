@@ -1,0 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,500;0,600;1,300;1,400;1,500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Jost:wght@700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
