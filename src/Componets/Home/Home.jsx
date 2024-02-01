@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { IoLockOpen, IoLockClosed } from "react-icons/io5";
 import { MdOutlineManageSearch } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 
 const Home = () => {
   const [locked, setLocked] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <div>
@@ -34,21 +35,21 @@ const Home = () => {
               </p>
             </div>
             <div className="flex flex-col md:flex-row justify-center items-center mt-3 md:gap-3">
-              <Link to={"/pass-generator"}>
-                <button
-                  className="btn hover:bg-[#2D1D60] bg-[#3f2986] text-white w-[80%] md:w-64 md:mr-3 relative"
-                  onClick={() => {
-                    setLocked(true);
-                  }}
-                >
-                  GENERATE PASSWORD
-                  {locked ? (
-                    <IoLockClosed className="absolute text-lg text-white left-5 font-bold" />
-                  ) : (
-                    <IoLockOpen className="absolute text-lg text-white left-5 font-bold " />
-                  )}
-                </button>
-              </Link>
+              {" "}
+              <button
+                className="btn hover:bg-[#2D1D60] bg-[#3f2986] text-white w-[80%] md:w-64 md:mr-3 relative"
+                onClick={() => {
+                  setLocked(true);
+                  navigate("/pass-generator");
+                }}
+              >
+                GENERATE PASSWORD
+                {locked ? (
+                  <IoLockClosed className="absolute text-lg text-white left-5 font-bold" />
+                ) : (
+                  <IoLockOpen className="absolute text-lg text-white left-5 font-bold " />
+                )}
+              </button>{" "}
               <button
                 className="btn hover:bg-[#d7c7d2] bg-[#FFF2FB] text-[#2D1D60] w-[80%] md:w-64 mt-3 md:mt-0 relative"
                 onClick={() => {
