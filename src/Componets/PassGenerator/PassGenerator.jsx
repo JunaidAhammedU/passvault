@@ -6,7 +6,7 @@ import { TbSparkles } from "react-icons/tb";
 
 const PassGenerator = () => {
   const [length, setLength] = useState(0);
-  const [isCopied, setIsCopied] = useState(false);
+  const [isCopied, setIsCopied] = useState(false); 
   const [checkbox, setCheckbox] = useState([
     { title: "ABC", state: false },
     { title: "abc", state: false },
