@@ -5,11 +5,13 @@ const passwordGenerator = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const generatePassword = (checkboxOption, length) => {
+  const generatePassword = (checkboxOption: any, length: any) => {
     let charset = "";
     let generatedPassword = "";
 
-    const selectedOption = checkboxOption.filter((checkbox) => checkbox.state);
+    const selectedOption = checkboxOption.filter(
+      (checkbox: any) => checkbox.state
+    );
 
     // handling the error if user not selected the option
     if (selectedOption.length === 0) {
@@ -19,7 +21,7 @@ const passwordGenerator = () => {
       return;
     }
 
-    selectedOption.forEach((option) => {
+    selectedOption.forEach((option: any) => {
       switch (option.title) {
         case "ABC":
           charset += "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

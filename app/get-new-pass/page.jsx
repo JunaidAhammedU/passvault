@@ -1,18 +1,20 @@
+"use client";
+
 import React, { useState } from "react";
-import passwordGenerator from "../../Helper/usePassword_Generator";
+import passwordGenerator from "@/lib/usePassword_Generator";
 import { TbClipboardText, TbClipboardCheck } from "react-icons/tb";
 import { TbSparkles } from "react-icons/tb";
 //--------------------------------------------------------------------
 
 const PassGenerator = () => {
   const [length, setLength] = useState(0);
-  const [isCopied, setIsCopied] = useState(false); 
+  const [isCopied, setIsCopied] = useState(false);
   const [checkbox, setCheckbox] = useState([
     { title: "ABC", state: false },
     { title: "abc", state: false },
     { title: "123", state: false },
     { title: "#$&", state: false },
-  ]); 
+  ]);
 
   // checkbox handle function
   const handleCheckbox = (i) => {
