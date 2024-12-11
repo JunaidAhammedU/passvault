@@ -5,7 +5,11 @@ const passwordGenerator = () => {
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const generatePassword = (checkboxOption: any, length: any) => {
+  const generatePassword = (
+    checkboxOption: any,
+    length: any,
+    customWords?: any
+  ) => {
     let charset = "";
     let generatedPassword = "";
 
@@ -43,6 +47,11 @@ const passwordGenerator = () => {
     for (let i = 0; i < length; i++) {
       const randomIndex = Math.floor(Math.random() * charset.length);
       generatedPassword += charset[randomIndex];
+    }
+
+    if (customWords) {
+      let finalPassword = `${customWords}#${generatedPassword}`;
+      generatedPassword = finalPassword;
     }
 
     setPassword(generatedPassword);
