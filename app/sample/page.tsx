@@ -20,7 +20,7 @@ export default function Page() {
     { title: "#$&", state: false },
   ]);
   const [customWords, setCustomWords] = useState("");
-
+  const [count, setCount] = useState(6);
   const { errorMessage, password, generatePassword } = passwordGenerator();
 
   const handleCheckbox = (i: number) => {
@@ -40,6 +40,7 @@ export default function Page() {
 
   const handleCustomWords = (value: string) => {
     const cleanedValue = value.replace(/[^a-zA-Z0-9]/g, "").trim();
+    setCount(6 - cleanedValue.length);
     setCustomWords(cleanedValue);
   };
 
@@ -129,12 +130,16 @@ export default function Page() {
           <label htmlFor="custom-words" className="text-gray-500 p-1">
             Custom words (optional)
           </label>
-          <div className="grid grid-cols-1 gap-5 justify-around px-2 py-5">
+          <div className="grid grid-cols-1 gap-5 justify-around px-2 py-5 relative">
             <Input
               placeholder="Type your custom words..."
               className="w-full h-[50px] rounded-xl text-lg border border-gray-300 shadow-sm placeholder:text-gray-400"
+              maxLength={6}
               onChange={(e) => handleCustomWords(e.target.value)}
             />
+            <p className="text-gray-500 text-sm absolute right-8 bottom-8">
+              {count}
+            </p>
           </div>
 
           <Button
