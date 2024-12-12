@@ -11,7 +11,7 @@ import React, { useState } from "react";
 import { TbClipboardCheck, TbClipboardText, TbSparkles } from "react-icons/tb";
 
 export default function Page() {
-  const [length, setLength] = useState(8);
+  const [length, setLength] = useState(4);
   const [isCopied, setIsCopied] = useState(false);
   const [checkbox, setCheckbox] = useState([
     { title: "ABC", state: false },
