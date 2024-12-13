@@ -38,3 +38,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# https://dribbble.com/shots/20392389-1Password-visual-identity -- design

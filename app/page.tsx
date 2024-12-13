@@ -1,66 +1,70 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
-import { IoLockOpen, IoLockClosed } from "react-icons/io5";
-import { MdOutlineManageSearch } from "react-icons/md";
-import { Caveat, Dosis } from "next/font/google";
+import React from "react";
+import { Mona_Sans } from "next/font/google";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-const caveat = Caveat({ subsets: ["latin"], weight: "400" });
-const dosis = Dosis({ subsets: ["latin"], weight: "400" });
+import Image from "next/image";
+const mona = Mona_Sans({ subsets: ["latin"], weight: "400" });
+import {
+  BsFacebook,
+  BsLinkedin,
+  BsGoogle,
+  BsThreadsFill,
+  BsTwitch,
+  BsTwitterX,
+} from "react-icons/bs";
 
 export default function Home() {
-  const [locked, setLocked] = useState(false);
   const router = useRouter();
 
   return (
-    <div>
-      <section className="h-screen relative">
-        <div className="flex flex-col justify-center items-center h-screen relative">
-          <div>
-            <img src="/bpic2.png" alt="" className="w-72 h-72 object-cover" />
+    <div className="min-h-screen flex items-center justify-center px-4 sm:px-8">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:p-5 md:px-6 xl:gap-32">
+        <div className="flex flex-col text-start justify-center items-center relative">
+          <div className="text-start mt-12 lg:mt-24">
+            <h1
+              className={`${mona.className} text-4xl md:text-7xl lg:text-7xl text-black font-extrabold leading-tight`}
+            >
+              Safe place <br />
+              for all your <br /> passwords
+            </h1>
           </div>
-          <div className="sm:w-1/2 md:w-4/5 lg:w-3/5 xl:w-2/3">
-            <div className="text-center flex flex-col justify-center">
-              <h1
-                className={` ${dosis.className}  text-[#191919] font-extrabold text-3xl md:text-3xl lg:text-4xl font-Poppins`}
-              >
-                Empower Your
-                <span
-                  className={` ${caveat.className}  text-[#8360ff] text-3xl md:text-4xl lg:text-5xl`}
-                >
-                  Digital World
-                </span>{" "}
-                with Strong Passwords!
-              </h1>
-              <p className="font-Inter text-lg mt-5">
-                Effortlessly secure your accounts with our{" "}
-                <span
-                  className={` ${caveat.className}  text-[#8360ff] text-2xl font-bold`}
-                >
-                  magical
-                </span>{" "}
-                password generator!
-              </p>
-            </div>
-            <div className="flex flex-col md:flex-row justify-center items-center mt-3 md:gap-3">
-              <Link href="/get-new-pass">
-                <Button className="rounded-xl hover:bg-[#2D1D60] bg-[#3f2986] text-white w-[80%] md:w-64 md:mr-3 relative">
-                  GENERATE PASSWORD
-                </Button>
-              </Link>
-              <Button className="rounded-xl hover:bg-[#d7c7d2] bg-[#FFF2FB] text-[#2D1D60] w-[80%] md:w-64 mt-3 md:mt-0 relative">
-                MANAGE PASSWORD
-              </Button>
-            </div>
-
-            <p className="text-[#392A69] text-center text-sm mt-3">
-              No credit required
+          <div className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-4">
+            <Button className="bg-black text-white text-lg py-3 px-6 hover:bg-gray-800 transition rounded-sm">
+              Generate Password*
+            </Button>
+            <Button className="bg-white text-black text-lg py-3 px-6 hover:bg-gray-100 transition rounded-sm">
+              Manage Passwords
+            </Button>
+          </div>
+          <div className="mt-4 md:mt-12">
+            <p className="text-sm mt-4 text-gray-700">
+              Over 10,000 business-friendly passwords and counting...
             </p>
+            <div className="flex justify-center gap-4 mt-4 text-gray-700">
+              <BsGoogle />
+              <BsFacebook />
+              <BsLinkedin />
+              <BsThreadsFill />
+              <BsTwitch />
+              <BsTwitterX />
+            </div>
           </div>
         </div>
-      </section>
+
+        <div className="flex justify-center items-center p-10 md:p-2">
+          <Image
+            src="/landing2.png"
+            alt="Password management illustration"
+            className="object-contain rounded-md  "
+            width={500}
+            height={500}
+            priority
+            sizes="(max-width: 768px) 100vw, 50vw"
+          />
+        </div>
+      </div>
     </div>
   );
 }
