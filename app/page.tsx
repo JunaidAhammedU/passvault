@@ -15,6 +15,7 @@ import {
   BsTwitterX,
 } from "react-icons/bs";
 import Navbar from "@/components/ui/Header";
+import Link from "next/link";
 
 export default function Home() {
   const router = useRouter();
@@ -34,9 +35,11 @@ export default function Home() {
               </h1>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-4">
-              <Button className="bg-black text-white text-lg py-3 px-6 hover:bg-gray-800 transition rounded-sm">
-                Generate Password*
-              </Button>
+              <Link href={"/get-new-pass"}>
+                <Button className="bg-black text-white text-lg py-3 px-6 hover:bg-gray-800 transition rounded-sm">
+                  Generate Password*
+                </Button>
+              </Link>
               <Button className="bg-white text-black text-lg py-3 px-6 hover:bg-gray-100 transition rounded-sm">
                 Manage Passwords
               </Button>
