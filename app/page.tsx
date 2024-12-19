@@ -16,6 +16,7 @@ import {
 } from "react-icons/bs";
 import Navbar from "@/components/ui/Header";
 import Link from "next/link";
+import LandSecOne from "@/components/pages/land.section1";
 
 export default function Home() {
   const router = useRouter();
@@ -72,6 +73,7 @@ export default function Home() {
           </div>
         </div>
       </div>
+      <LandSecOne />
     </>
   );
 }
