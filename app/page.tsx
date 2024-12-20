@@ -45,7 +45,7 @@ export default function Home() {
                 Manage Passwords
               </Button>
             </div>
-            <div className="mt-4 md:mt-12">
+            <div className="mt-4 md:mt-12 text-center">
               <p className="text-sm mt-4 text-gray-700">
                 Over 10,000 business-friendly passwords and counting...
               </p>
