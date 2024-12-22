@@ -49,8 +49,7 @@ export default function Page() {
 
   return (
     <>
-      <Navbar />
-      <div className="p-10 md:p-20 lg:p-32 xl:p-40 items-center">
+      <div className="">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-center">
             Generate Your Password

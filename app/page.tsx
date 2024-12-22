@@ -36,14 +36,16 @@ export default function Home() {
               </h1>
             </div>
             <div className="mt-8 flex flex-col sm:flex-row sm:justify-center gap-4">
-              <Link href={"/get-new-pass"}>
+              <Link href={"/dashboard/get-new-pass"}>
                 <Button className="bg-black text-white text-lg py-3 px-6 hover:bg-gray-800 transition rounded-sm">
                   Generate Password*
                 </Button>
               </Link>
-              <Button className="bg-white text-black text-lg py-3 px-6 hover:bg-gray-100 transition rounded-sm">
-                Manage Passwords
-              </Button>
+              <Link href={"/dashboard/manage-password"}>
+                <Button className="bg-white text-black text-lg py-3 px-6 hover:bg-gray-100 transition rounded-sm">
+                  Manage Passwords
+                </Button>
+              </Link>
             </div>
             <div className="mt-4 md:mt-12 text-center">
               <p className="text-sm mt-4 text-gray-700">
