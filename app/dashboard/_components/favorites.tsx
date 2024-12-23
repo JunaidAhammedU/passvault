@@ -6,8 +6,8 @@ import {
   FaGithub,
   FaAmazon,
   FaTwitter,
+  FaLinkedin,
 } from "react-icons/fa";
-import { FaLinkedin } from "react-icons/fa6";
 
 export default function Favorites() {
   return (
