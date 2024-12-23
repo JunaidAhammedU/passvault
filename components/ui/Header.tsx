@@ -3,7 +3,7 @@ import Link from "next/link";
 
 const Navbar = () => {
   return (
-    <nav className="flex flex-wrap items-center justify-between px-6 py-4 z-50 fixed w-full bg-white">
+    <nav className="flex flex-wrap items-center justify-between px-6 py-4 z-50 fixed w-full top-0 border-b border-gray-200 bg-white">
       <Link href={"/"}>
         <div className="flex items-center">
           <Image
