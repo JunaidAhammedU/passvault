@@ -44,11 +44,13 @@ export function ViewDrawer({
               className="border border-gray-300 text-black w-full rounded-md h-10 items-center flex px-4 relative mt-4"
               onClick={() => setIsClicked(!isClicked)}
             >
-              {isClicked ? (
-                <h1 className="items-center">{url}</h1>
-              ) : (
-                <h1 className="items-center">********</h1>
-              )}
+              <h1
+                className={`${
+                  !isClicked ? `absolute bottom-1` : `items-center`
+                }`}
+              >
+                {isClicked ? url : "********"}
+              </h1>
               <FaRegCopy
                 className="absolute right-3 text-gray-600 cursor-pointer hover:text-gray-900"
                 onClick={handleCopy}
