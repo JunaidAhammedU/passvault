@@ -1,35 +1,33 @@
 import { Button } from "@/components/ui/button";
 import {
   Drawer,
-  DrawerClose,
   DrawerContent,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
-  DrawerTrigger,
 } from "@/components/ui/drawer";
 
 export function ViewDrawer({
   openOutputDrawer,
   closeOutputDrawer,
   name,
-  userName,
+  url,
 }: any) {
   return (
-    <Drawer open={openOutputDrawer}>
+    <Drawer open={openOutputDrawer} onOpenChange={closeOutputDrawer}>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Are you absolutely sure?</DrawerTitle>
-          <DrawerDescription>This action cannot be undone.</DrawerDescription>
+          <DrawerTitle>{name}</DrawerTitle>
+          <DrawerDescription>{url}</DrawerDescription>
         </DrawerHeader>
         <DrawerFooter>
-          <Button>Submit</Button>
-          <DrawerClose>
-            <Button onClick={() => closeOutputDrawer(false)} variant="outline">
-              Close
-            </Button>
-          </DrawerClose>
+          <div className="flex justify-center items-center">
+            <Button variant="outline">Edit</Button>
+          </div>
+          {/* <Button onClick={closeOutputDrawer} variant="outline">
+            Close
+          </Button> */}
         </DrawerFooter>
       </DrawerContent>
     </Drawer>
