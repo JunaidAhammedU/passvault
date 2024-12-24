@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { CiStar } from "react-icons/ci";
 import getIcon from "./icons";
-import { ViewDrawer } from "./viewDialog";
+import { ViewDrawer } from "./viewDrawer";
+import ViewDialoge from "./viewDialog";
 
 export default function Favorites() {
   const data = [
@@ -13,12 +14,26 @@ export default function Favorites() {
     { id: 5, name: "Google", url: "google.com" },
     { id: 6, name: "Facebook", url: "facebook.com" },
   ];
-  const [openOutputDialog, setOpenOutputDialog] = useState(false);
-  const [selectedFavorite, setSelectedFavorite] = useState<any>({});
 
-  const openDrawer = (favorite: any) => {
+  const [openOutput, setOpenOutput] = useState(false);
+  const [selectedFavorite, setSelectedFavorite] = useState<any>({});
+  const [isMobile, setIsMobile] = useState(false);
+
+  // window resize.
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const openFavorite = (favorite: any) => {
     setSelectedFavorite(favorite);
-    setOpenOutputDialog(true);
+    setOpenOutput(true);
   };
 
   return (
@@ -33,7 +48,7 @@ export default function Favorites() {
             <div
               key={favorite.id}
               className="flex items-center gap-2 cursor-pointer"
-              onClick={() => openDrawer(favorite)}
+              onClick={() => openFavorite(favorite)}
             >
               <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
                 {getIcon(favorite.name.toLowerCase())}
@@ -46,12 +61,21 @@ export default function Favorites() {
           ))}
         </div>
       </div>
-      <ViewDrawer
-        openOutputDrawer={openOutputDialog}
-        closeOutputDrawer={() => setOpenOutputDialog(false)}
-        name={selectedFavorite.name}
-        url={selectedFavorite.url}
-      />
+      {isMobile ? (
+        <ViewDrawer
+          openOutputDrawer={openOutput}
+          closeOutputDrawer={() => setOpenOutput(false)}
+          name={selectedFavorite.name}
+          url={selectedFavorite.url}
+        />
+      ) : (
+        <ViewDialoge
+          openOutputDialog={openOutput}
+          closeOutputDialog={() => setOpenOutput(false)}
+          name={selectedFavorite.name}
+          url={selectedFavorite.url}
+        />
+      )}
     </>
   );
 }

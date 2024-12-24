@@ -1,35 +1,41 @@
-import { Button } from "@/components/ui/button";
+import React from "react";
 import {
-  Drawer,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-} from "@/components/ui/drawer";
+  AlertDialog,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
-export function ViewDrawer({
-  openOutputDrawer,
-  closeOutputDrawer,
-  name,
-  url,
-}: any) {
+function ViewDialoge({ openOutputDialog, closeOutputDialog, name, url }: any) {
   return (
-    <Drawer open={openOutputDrawer} onOpenChange={closeOutputDrawer}>
-      <DrawerContent>
-        <DrawerHeader>
-          <DrawerTitle>{name}</DrawerTitle>
-          <DrawerDescription>{url}</DrawerDescription>
-        </DrawerHeader>
-        <DrawerFooter>
-          <div className="flex justify-center items-center">
-            <Button variant="outline">Edit</Button>
+    <AlertDialog open={openOutputDialog}>
+      <AlertDialogContent>
+        <AlertDialogHeader>
+          <AlertDialogTitle className="text-center text-lg">
+            {" "}
+            Here is your result.
+          </AlertDialogTitle>
+        </AlertDialogHeader>
+        <div className="grid gap-4 py-4">
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="name" className="text-right">
+              Username
+            </label>
+            <Input id="name" value={name} className="col-span-3" />
           </div>
-          {/* <Button onClick={closeOutputDrawer} variant="outline">
-            Close
-          </Button> */}
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <label htmlFor="username" className="text-right">
+              Password
+            </label>
+            <Input id="username" value={url} className="col-span-3" />
+          </div>
+        </div>
+        <Button onClick={() => closeOutputDialog(false)}>Close</Button>
+      </AlertDialogContent>
+    </AlertDialog>
   );
 }
+
+export default ViewDialoge;

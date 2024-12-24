@@ -41,7 +41,7 @@ export default function Home() {
                   Generate Password*
                 </Button>
               </Link>
-              <Link href={"/dashboard/manage-password"}>
+              <Link href={"/dashboard/manage-password/home"}>
                 <Button className="bg-white text-black text-lg py-3 px-6 hover:bg-gray-100 transition rounded-sm">
                   Manage Passwords
                 </Button>
