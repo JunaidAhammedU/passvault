@@ -47,10 +47,10 @@ export default function Favorites() {
           {data.map((favorite) => (
             <div
               key={favorite.id}
-              className="flex items-center gap-2 cursor-pointer"
+              className="flex items-center gap-5 cursor-pointer p-2 shadow-sm rounded-lg hover:shadow-md"
               onClick={() => openFavorite(favorite)}
             >
-              <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
+              <div className="w-8 h-8  rounded-full flex items-center justify-center">
                 {getIcon(favorite.name.toLowerCase())}
               </div>
               <div>

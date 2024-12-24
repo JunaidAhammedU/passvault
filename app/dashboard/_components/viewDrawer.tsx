@@ -42,7 +42,7 @@ export function ViewDrawer({
             <h1 className="text-lg md:mr-4 absolute left-5 top-0">Password</h1>
             <div
               className="border border-gray-300 text-black w-full rounded-md h-10 items-center flex px-4 relative mt-4"
-              onClick={() => setIsClicked(!isClicked)}
+              onClick={() => setIsClicked(true)}
             >
               <h1
                 className={`${

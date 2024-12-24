@@ -23,7 +23,7 @@ export default function ShowCards() {
             className="absolute right-0 top-0 z-10 object-cover"
           />
         </div>
-        <div className=" bg-[#FFF96F] h-44 rounded-xl relative overflow-hidden">
+        <div className=" bg-[#CBCCBF] h-44 rounded-xl relative overflow-hidden">
           <h1 className="text-xl font-semibold absolute top-[20%] left-2 p-2">
             Custom Passwords
           </h1>
