@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import Navbar from "@/components/ui/Header";
+import Navbar from "@/app/dashboard/_components/Header";
 import { Input } from "@/components/ui/input";
 import Progress from "@/components/ui/progress";
 import { Slider } from "@/components/ui/slider";

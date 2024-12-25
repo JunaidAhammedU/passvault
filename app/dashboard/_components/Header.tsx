@@ -1,7 +1,17 @@
+"use client";
+
 import Image from "next/image";
+import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
+import { useContext } from "react";
+import { UserDetailContext } from "@/app/_context/userDetailsCOntext";
 
 const Navbar = () => {
+  const context = useContext(UserDetailContext);
+  const { user } = useUser();
+  // if (!context) {
+  //   return null;
+  // }
   return (
     <nav className="flex flex-wrap items-center justify-between px-6 py-4 z-50 fixed w-full top-0 border-b border-gray-200 bg-white">
       <Link href={"/"}>
@@ -18,17 +28,14 @@ const Navbar = () => {
         </div>
       </Link>
 
-      {/* <div className="hidden md:flex items-center space-x-6">
-        <a className="text-gray-700 hover:text-black">Product</a>
-        <a className="text-gray-700 hover:text-black">Features</a>
-        <a className="text-gray-700 hover:text-black">Marketplace</a>
-        <a className="text-gray-700 hover:text-black">Company</a>
-      </div> */}
-
       <div className="hidden md:flex">
-        <a className="text-black flex items-center">
-          Log in <span className="ml-1">→</span>
-        </a>
+        {user?.primaryEmailAddress?.emailAddress ? (
+          <UserButton />
+        ) : (
+          <Link href={"/sign-in"}>
+            Log in <span className="ml-1">→</span>
+          </Link>
+        )}
       </div>
 
       <div className="md:hidden flex items-center">

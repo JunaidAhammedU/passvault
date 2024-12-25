@@ -14,7 +14,7 @@ import {
   BsTwitch,
   BsTwitterX,
 } from "react-icons/bs";
-import Navbar from "@/components/ui/Header";
+import Navbar from "@/app/dashboard/_components/Header";
 import Link from "next/link";
 import LandSecOne from "@/components/pages/land.section1";
 

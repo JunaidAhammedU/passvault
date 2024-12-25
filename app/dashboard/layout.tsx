@@ -1,5 +1,5 @@
 import React from "react";
-import Navbar from "@/components/ui/Header";
+import Navbar from "@/app/dashboard/_components/Header";
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (

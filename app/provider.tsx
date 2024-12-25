@@ -21,6 +21,7 @@ export default function Provider({ children }: any) {
   const verifyUser = async () => {
     try {
       const response = await axios.post("/api/verify.user", { user });
+      alert("User verified");
       setUserDetails(response.data.result);
       setIsVerified(true);
     } catch (error) {
