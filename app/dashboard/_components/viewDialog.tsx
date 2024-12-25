@@ -8,13 +8,17 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
+import { useToast } from "@/hooks/use-toast";
 import { FaRegCopy } from "react-icons/fa";
 
 function ViewDialoge({ openOutputDialog, closeOutputDialog, name, url }: any) {
+  const { toast } = useToast();
   const [isClicked, setIsClicked] = useState(false);
 
   const handleCopy = () => {
+    toast({
+      description: "Copied to clipboard",
+    });
     navigator.clipboard.writeText(url);
   };
 
