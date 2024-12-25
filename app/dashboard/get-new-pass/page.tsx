@@ -23,7 +23,7 @@ export default function Page() {
   const [customWords, setCustomWords] = useState("");
   const [count, setCount] = useState(6);
   const { errorMessage, password, generatePassword } = passwordGenerator();
-
+  const [isPassCreated, setIsPassCreated] = useState(false);
   const handleCheckbox = (i: number) => {
     const updatedData = [...checkbox];
     updatedData[i].state = !updatedData[i].state;
@@ -49,7 +49,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="">
+      <div className="px-10 py-10">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-center">
             Generate Your Password
@@ -57,7 +57,7 @@ export default function Page() {
           <p>Choose the length of your password and include the following:</p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 mt-10 gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 sm:mt-5 md:mt-10 gap-10">
           <div>
             <label htmlFor="password" className="text-gray-500 p-1">
               Password
