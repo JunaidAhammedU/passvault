@@ -2,7 +2,6 @@
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
-import Navbar from "@/app/dashboard/_components/Header";
 import { Input } from "@/components/ui/input";
 import Progress from "@/components/ui/progress";
 import { Slider } from "@/components/ui/slider";
@@ -10,6 +9,7 @@ import { getPasswordStrength } from "@/lib/getStrength";
 import passwordGenerator from "@/lib/usePassword_Generator";
 import React, { useState } from "react";
 import { TbClipboardCheck, TbClipboardText, TbSparkles } from "react-icons/tb";
+import ManagePassDialoge from "../_components/manage.pass.dialog";
 
 export default function Page() {
   const [length, setLength] = useState(4);
@@ -32,6 +32,7 @@ export default function Page() {
 
   const handleCopy = () => {
     if (!password) return;
+    setIsPassCreated(true);
     navigator.clipboard.writeText(password);
     setIsCopied(true);
     setTimeout(() => {
@@ -156,6 +157,11 @@ export default function Page() {
           </div>
         </div>
       </div>
+
+      <ManagePassDialoge
+        openOutputDrawer={isPassCreated}
+        closeOutputDrawer={() => setIsPassCreated(false)}
+      />
     </>
   );
 }
