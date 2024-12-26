@@ -24,7 +24,19 @@ function ManagePassDialoge({ openOutputDialog, closeOutputDialog }: any) {
             </div>
           </AlertDialogTitle>
         </AlertDialogHeader>
-        sajs
+        <div>
+          <div
+            className="text-center
+            text-lg
+            font-semibold
+            text-gray-600
+            mt-4
+            mb-2
+          "
+          >
+            Your Password is:
+          </div>
+        </div>
         <Button onClick={() => closeOutputDialog(false)}>Close</Button>
       </AlertDialogContent>
     </AlertDialog>
