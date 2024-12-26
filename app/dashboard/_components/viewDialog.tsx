@@ -16,9 +16,6 @@ function ViewDialoge({ openOutputDialog, closeOutputDialog, name, url }: any) {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleCopy = () => {
-    toast({
-      description: "Copied to clipboard",
-    });
     navigator.clipboard.writeText(url);
   };
 

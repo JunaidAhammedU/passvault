@@ -10,8 +10,11 @@ import passwordGenerator from "@/lib/usePassword_Generator";
 import React, { useState } from "react";
 import { TbClipboardCheck, TbClipboardText, TbSparkles } from "react-icons/tb";
 import ManagePassDialoge from "../_components/manage.pass.dialog";
+import { useToast } from "@/hooks/use-toast";
+import { ToastAction } from "@/components/ui/toast";
 
 export default function Page() {
+  const { toast } = useToast();
   const [length, setLength] = useState(4);
   const [isCopied, setIsCopied] = useState(false);
   const [checkbox, setCheckbox] = useState([
@@ -23,7 +26,8 @@ export default function Page() {
   const [customWords, setCustomWords] = useState("");
   const [count, setCount] = useState(6);
   const { errorMessage, password, generatePassword } = passwordGenerator();
-  const [isPassCreated, setIsPassCreated] = useState(false);
+  const [openOutput, setOpenOutput] = useState(false);
+
   const handleCheckbox = (i: number) => {
     const updatedData = [...checkbox];
     updatedData[i].state = !updatedData[i].state;
@@ -32,7 +36,6 @@ export default function Page() {
 
   const handleCopy = () => {
     if (!password) return;
-    setIsPassCreated(true);
     navigator.clipboard.writeText(password);
     setIsCopied(true);
     setTimeout(() => {
@@ -47,6 +50,24 @@ export default function Page() {
   };
 
   const { strength, color, value } = getPasswordStrength(password || "");
+
+  const handleGeneratePassword = () => {
+    generatePassword(checkbox, length, customWords);
+    setTimeout(() => {
+      toast({
+        title: "Password Generated!",
+        description: "Your new password is ready. Would you like to save it?",
+        action: (
+          <ToastAction
+            onClick={() => setOpenOutput(true)}
+            altText="Save your password"
+          >
+            Save
+          </ToastAction>
+        ),
+      });
+    }, 2000);
+  };
 
   return (
     <>
@@ -122,7 +143,7 @@ export default function Page() {
                   <Checkbox
                     checked={data.state}
                     onCheckedChange={() => handleCheckbox(ind)}
-                    className={`ml-5 rounded-xl  h-[30px] w-[30px] bg-white ${
+                    className={`ml-5 rounded-xl h-[30px] w-[30px] bg-white ${
                       data.state ? " border border-black" : ""
                     }`}
                   />
@@ -146,7 +167,7 @@ export default function Page() {
             </div>
 
             <Button
-              onClick={() => generatePassword(checkbox, length, customWords)}
+              onClick={handleGeneratePassword}
               className="w-full mt-5 bg-black text-white rounded-xl hover:bg-black/80 hover:text-white/80 transition duration-300"
             >
               Generate
@@ -159,8 +180,8 @@ export default function Page() {
       </div>
 
       <ManagePassDialoge
-        openOutputDrawer={isPassCreated}
-        closeOutputDrawer={() => setIsPassCreated(false)}
+        openOutputDialog={openOutput}
+        closeOutputDialog={() => setOpenOutput(false)}
       />
     </>
   );
