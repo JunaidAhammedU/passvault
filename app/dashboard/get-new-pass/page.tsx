@@ -182,6 +182,7 @@ export default function Page() {
       <ManagePassDialoge
         openOutputDialog={openOutput}
         closeOutputDialog={() => setOpenOutput(false)}
+        password={password}
       />
     </>
   );

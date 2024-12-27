@@ -7,11 +7,22 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import Image from "next/image";
+import axios from "axios";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
-function ManagePassDialoge({ openOutputDialog, closeOutputDialog }: any) {
+function ManagePassDialoge({
+  openOutputDialog,
+  closeOutputDialog,
+  password,
+}: any) {
   const { toast } = useToast();
   const {
     register,
@@ -19,12 +30,27 @@ function ManagePassDialoge({ openOutputDialog, closeOutputDialog }: any) {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data: any) => {
-    console.log(data);
-    toast({
-      title: "Password Saved",
-      description: "Your password has been saved successfully.",
-    });
+  const onSubmit = async (data: any) => {
+    try {
+      const res = await axios.post("/api/create-password", data);
+
+      if (res.status === 201) {
+        toast({
+          title: "Success",
+          description: "Your password has been saved successfully.",
+        });
+        // closeOutputDialog(false);
+      }
+    } catch (error: any) {
+      toast({
+        title: "Error",
+        description: error.response?.data?.error || "An error occurred.",
+        variant: "destructive",
+      });
+    }
+  };
+
+  const handleClose = () => {
     closeOutputDialog(false);
   };
 
@@ -34,24 +60,16 @@ function ManagePassDialoge({ openOutputDialog, closeOutputDialog }: any) {
         <AlertDialogHeader>
           <AlertDialogTitle className="text-center text-lg">
             <div className="text-center text-xl md:text-2xl">
-              Save Your Password Securly
+              Save Your Password Securely
             </div>
           </AlertDialogTitle>
         </AlertDialogHeader>
         <div className="grid grid-cols-1 gap-2 p-4">
-          {/* <div>
-            <Image
-              src={"/passanimation.gif"}
-              className="object-cover"
-              width={150}
-              height={150}
-              alt="loading"
-            />
-          </div> */}
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="mb-4">
               <label className="block text-sm font-medium">Label</label>
               <Input
+                placeholder="Google"
                 {...register("label", { required: true })}
                 className="mt-1 block w-full"
               />
@@ -62,6 +80,7 @@ function ManagePassDialoge({ openOutputDialog, closeOutputDialog }: any) {
             <div className="mb-4">
               <label className="block text-sm font-medium">Username</label>
               <Input
+                placeholder="google@gmail.com"
                 {...register("username", { required: true })}
                 className="mt-1 block w-full"
               />
@@ -72,7 +91,8 @@ function ManagePassDialoge({ openOutputDialog, closeOutputDialog }: any) {
             <div className="mb-4">
               <label className="block text-sm font-medium">Password</label>
               <Input
-                type="password"
+                value={password}
+                type="text"
                 {...register("password", { required: true })}
                 className="mt-1 block w-full"
               />
@@ -82,16 +102,27 @@ function ManagePassDialoge({ openOutputDialog, closeOutputDialog }: any) {
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium">Tag</label>
-              <Input {...register("tag")} className="mt-1 block w-full" />
+              <Controller
+                name="tag"
+                render={({ field }) => (
+                  <Select {...field}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select a tag" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="office">#office</SelectItem>
+                      <SelectItem value="personal">#personal</SelectItem>
+                      <SelectItem value="important">#important</SelectItem>
+                    </SelectContent>
+                  </Select>
+                )}
+              />
             </div>
             <div className="flex justify-center space-x-4 mt-4">
               <Button type="submit" className="w-1/3">
                 Save
               </Button>
-              <Button
-                className="w-1/3"
-                onClick={() => closeOutputDialog(false)}
-              >
+              <Button className="w-1/3" onClick={handleClose}>
                 Close
               </Button>
             </div>
