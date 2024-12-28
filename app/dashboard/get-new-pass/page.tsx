@@ -10,7 +10,7 @@ import passwordGenerator from "@/lib/usePassword_Generator";
 import React, { useState } from "react";
 import { TbClipboardCheck, TbClipboardText, TbSparkles } from "react-icons/tb";
 import ManagePassDialoge from "../_components/manage.pass.dialog";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/lib/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
 
 export default function Page() {
@@ -72,7 +72,7 @@ export default function Page() {
 
   return (
     <>
-      <div className="px-10 py-10">
+      <div className="px-10 py-10 md:px-40 md:py-10">
         <div className="text-center">
           <h2 className="text-4xl font-bold text-center">
             Generate Your Password
@@ -179,7 +179,6 @@ export default function Page() {
           </div>
         </div>
       </div>
-
       <ManagePassDialoge
         openOutputDialog={openOutput}
         closeOutputDialog={() => setOpenOutput(false)}

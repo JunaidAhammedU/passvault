@@ -1,16 +1,25 @@
-import React from "react";
-import { CiStar } from "react-icons/ci";
-import {
-  FaGoogle,
-  FaFacebook,
-  FaGithub,
-  FaAmazon,
-  FaTwitter,
-  FaLinkedin,
-} from "react-icons/fa";
+"use client";
+
+import axios from "axios";
+import React, { use, useEffect, useState } from "react";
 import { LuHistory } from "react-icons/lu";
+import getIcon from "./icons";
 
 export default function RecentlyCreated() {
+  const [data, setData] = useState<any[]>([]);
+
+  const handleFetch = async () => {
+    try {
+      const response = await axios.get("/api/recently-created");
+      setData(response.data);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    handleFetch();
+  }, [handleFetch]);
+
   return (
     <>
       <div className="bg-white shadow-sm relative rounded-xl px-6 py-9 mt-4">
@@ -18,117 +27,23 @@ export default function RecentlyCreated() {
           <LuHistory className="text-2xl " />
           <h1 className="text-[20px] font-semibold"> Recently Created</h1>
         </div>
+
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-8">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaLinkedin className="text-2xl" />
+          {data.map((favorite) => (
+            <div
+              key={favorite.id}
+              className="flex items-center gap-5 cursor-pointer p-2 shadow-sm rounded-lg hover:shadow-md"
+              // onClick={() => openFavorite(favorite)}
+            >
+              <div className="w-8 h-8  rounded-full flex items-center justify-center">
+                {getIcon(favorite.name.toLowerCase())}
+              </div>
+              <div>
+                <h1 className="text-[15px] font-semibold">{favorite.name}</h1>
+                <p className="text-[13px] text-[#7A7A7A]">{favorite.url}</p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Linkedin</h1>
-              <p className="text-[13px] text-[#7A7A7A]">linkedin.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaTwitter className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Twitter</h1>
-              <p className="text-[13px] text-[#7A7A7A]">twitter.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaGithub className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">GitHub</h1>
-              <p className="text-[13px] text-[#7A7A7A]">github.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaAmazon className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Amazon</h1>
-              <p className="text-[13px] text-[#7A7A7A]">amazon.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaGoogle className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Google</h1>
-              <p className="text-[13px] text-[#7A7A7A]">google.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaFacebook className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Facebook</h1>
-              <p className="text-[13px] text-[#7A7A7A]">facebook.com</p>
-            </div>
-          </div>
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-4 mt-8">
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaLinkedin className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Linkedin</h1>
-              <p className="text-[13px] text-[#7A7A7A]">linkedin.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaTwitter className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Twitter</h1>
-              <p className="text-[13px] text-[#7A7A7A]">twitter.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaGithub className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">GitHub</h1>
-              <p className="text-[13px] text-[#7A7A7A]">github.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaAmazon className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Amazon</h1>
-              <p className="text-[13px] text-[#7A7A7A]">amazon.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaGoogle className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Google</h1>
-              <p className="text-[13px] text-[#7A7A7A]">google.com</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-[#FFF96F] rounded-full flex items-center justify-center">
-              <FaFacebook className="text-2xl" />
-            </div>
-            <div>
-              <h1 className="text-[15px] font-semibold">Facebook</h1>
-              <p className="text-[13px] text-[#7A7A7A]">facebook.com</p>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
     </>

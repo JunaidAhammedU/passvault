@@ -8,7 +8,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "@/lib/hooks/use-toast";
 import { FaRegCopy } from "react-icons/fa";
 
 function ViewDialoge({ openOutputDialog, closeOutputDialog, name, url }: any) {
