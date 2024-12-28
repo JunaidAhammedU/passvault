@@ -1,6 +1,7 @@
 import Passvault from "@/models/passvault.schema";
 import connectToDatabase from "@/config/db";
 import { NextResponse } from "next/server";
+import { encryptData } from "@/lib/cryptoHelper";
 
 export async function POST(req: Request) {
   await connectToDatabase();
@@ -19,7 +20,7 @@ export async function POST(req: Request) {
     const newPassvault = new Passvault({
       label,
       username,
-      password,
+      password: encryptData(password),
       tag,
     });
 

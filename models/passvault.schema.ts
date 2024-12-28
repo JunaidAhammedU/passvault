@@ -12,7 +12,8 @@ const PassvaultSchema: Schema<PassDocument> = new Schema({
   label: { type: String, required: true },
   username: { type: String, required: true },
   password: { type: String, required: true },
-  tag: { type: Schema.Types.ObjectId, ref: "Tag" },
+  // tag: { type: Schema.Types.ObjectId, ref: "Tag" },
+  tag: { type: String },
   createdAt: { type: Date, default: Date.now },
 });
 

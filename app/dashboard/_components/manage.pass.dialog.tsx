@@ -7,7 +7,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
-import { useForm, Controller } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
 import {
@@ -17,6 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { useEffect, useState } from "react";
 
 function ManagePassDialoge({
   openOutputDialog,
@@ -29,17 +30,18 @@ function ManagePassDialoge({
     handleSubmit,
     formState: { errors },
   } = useForm();
+  const [tags, setTags] = useState<any>([]);
 
+  // form submit.
   const onSubmit = async (data: any) => {
     try {
       const res = await axios.post("/api/create-password", data);
-
       if (res.status === 201) {
         toast({
           title: "Success",
           description: "Your password has been saved successfully.",
         });
-        // closeOutputDialog(false);
+        closeOutputDialog(false);
       }
     } catch (error: any) {
       toast({
@@ -50,9 +52,19 @@ function ManagePassDialoge({
     }
   };
 
-  const handleClose = () => {
-    closeOutputDialog(false);
+  // fetch tags.
+  const handleFetchTags = async () => {
+    try {
+      const res = await axios.get("/api/get-tags");
+      setTags(res.data);
+    } catch (error: any) {
+      console.log(error.response?.data?.error || "An error occurred.");
+    }
   };
+
+  useEffect(() => {
+    handleFetchTags();
+  }, []);
 
   return (
     <AlertDialog open={openOutputDialog}>
@@ -102,27 +114,27 @@ function ManagePassDialoge({
             </div>
             <div className="mb-4">
               <label className="block text-sm font-medium">Tag</label>
-              <Controller
-                name="tag"
-                render={({ field }) => (
-                  <Select {...field}>
-                    <SelectTrigger>
-                      <SelectValue placeholder="Select a tag" />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="office">#office</SelectItem>
-                      <SelectItem value="personal">#personal</SelectItem>
-                      <SelectItem value="important">#important</SelectItem>
-                    </SelectContent>
-                  </Select>
-                )}
-              />
+              <Select>
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select a tag" />
+                </SelectTrigger>
+                <SelectContent>
+                  {tags.map((tag: any) => (
+                    <SelectItem key={tag._id} value={tag.label}>
+                      {tag.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
             </div>
             <div className="flex justify-center space-x-4 mt-4">
               <Button type="submit" className="w-1/3">
                 Save
               </Button>
-              <Button className="w-1/3" onClick={handleClose}>
+              <Button
+                className="w-1/3"
+                onClick={() => closeOutputDialog(false)}
+              >
                 Close
               </Button>
             </div>
