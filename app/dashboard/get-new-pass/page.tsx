@@ -23,6 +23,7 @@ export default function Page() {
     { title: "123", state: false },
     { title: "#$&", state: false },
   ]);
+
   const [customWords, setCustomWords] = useState("");
   const [count, setCount] = useState(6);
   const { errorMessage, password, generatePassword } = passwordGenerator();

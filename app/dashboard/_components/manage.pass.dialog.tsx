@@ -31,16 +31,19 @@ function ManagePassDialoge({
     formState: { errors },
   } = useForm();
   const [tags, setTags] = useState<any>([]);
+  const [loading, setLoading] = useState<boolean>(false);
 
   // form submit.
   const onSubmit = async (data: any) => {
     try {
       const res = await axios.post("/api/create-password", data);
+      setLoading(true);
       if (res.status === 201) {
         toast({
           title: "Success",
           description: "Your password has been saved successfully.",
         });
+        setLoading(false);
         closeOutputDialog(false);
       }
     } catch (error: any) {
@@ -128,7 +131,10 @@ function ManagePassDialoge({
               </Select>
             </div>
             <div className="flex justify-center space-x-4 mt-4">
-              <Button type="submit" className="w-1/3">
+              <Button
+                type="submit"
+                className={`${loading ? `cursor-not-allowed w-1/3` : `w-1/3`}`}
+              >
                 Save
               </Button>
               <Button
