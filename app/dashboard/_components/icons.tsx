@@ -14,7 +14,18 @@ import {
   FaWhatsapp,
   FaTelegram,
   FaDiscord,
+  FaApple,
+  FaMicrosoft,
+  FaSpotify,
+  FaSlack,
+  FaDropbox,
+  FaTwitch,
+  FaVimeo,
+  FaFlickr,
+  FaDribbble,
+  FaBehance,
 } from "react-icons/fa";
+import { RiDoorLockLine } from "react-icons/ri";
 
 type IconName =
   | "google"
@@ -31,7 +42,17 @@ type IconName =
   | "tiktok"
   | "whatsapp"
   | "telegram"
-  | "discord";
+  | "discord"
+  | "apple"
+  | "microsoft"
+  | "spotify"
+  | "slack"
+  | "dropbox"
+  | "twitch"
+  | "vimeo"
+  | "flickr"
+  | "dribbble"
+  | "behance";
 
 const getIcon = (iconName: IconName | any) => {
   switch (iconName) {
@@ -65,8 +86,28 @@ const getIcon = (iconName: IconName | any) => {
       return <FaTelegram className="text-[#0088CC] text-4xl" />;
     case "discord":
       return <FaDiscord className="text-[#7289DA] text-4xl" />;
+    case "apple":
+      return <FaApple className="text-[#000000] text-4xl" />;
+    case "microsoft":
+      return <FaMicrosoft className="text-[#F25022] text-4xl" />;
+    case "spotify":
+      return <FaSpotify className="text-[#1DB954] text-4xl" />;
+    case "slack":
+      return <FaSlack className="text-[#4A154B] text-4xl" />;
+    case "dropbox":
+      return <FaDropbox className="text-[#0061FF] text-4xl" />;
+    case "twitch":
+      return <FaTwitch className="text-[#9146FF] text-4xl" />;
+    case "vimeo":
+      return <FaVimeo className="text-[#1AB7EA] text-4xl" />;
+    case "flickr":
+      return <FaFlickr className="text-[#FF0084] text-4xl" />;
+    case "dribbble":
+      return <FaDribbble className="text-[#EA4C89] text-4xl" />;
+    case "behance":
+      return <FaBehance className="text-[#1769FF] text-4xl" />;
     default:
-      return null;
+      return <RiDoorLockLine className="text-4xl" />;
   }
 };
 
