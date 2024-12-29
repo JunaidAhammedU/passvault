@@ -27,7 +27,7 @@ export default function RecentlyCreated() {
 
   return (
     <>
-      <div className="bg-white shadow-sm relative rounded-xl px-6 py-9 mt-4">
+      <div className="bg-white shadow-sm relative rounded-xl px-6 py-9 mt-4 h-full">
         <div className="flex items-center gap-2 absolute top-4 left-6">
           <LuHistory className="text-2xl " />
           <h1 className="text-[20px] font-semibold"> Recently Created</h1>

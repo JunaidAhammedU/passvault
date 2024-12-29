@@ -4,9 +4,9 @@ import Footer from "./_components/Footer";
 
 function DashboardLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div>
+    <div className=" mt10">
       <Navbar />
-      <div className="pt-[70px]">{children}</div>
+      <div>{children}</div>
       <Footer />
     </div>
   );

@@ -54,60 +54,60 @@ type IconName =
   | "dribbble"
   | "behance";
 
-const getIcon = (iconName: IconName | any) => {
+const getIcon = (iconName: IconName | any, size: string = "text-4xl") => {
   switch (iconName) {
     case "google":
-      return <FaGoogle className="text-[#4285F4] text-4xl" />;
+      return <FaGoogle className={`text-[#4285F4] ${size}`} />;
     case "facebook":
-      return <FaFacebook className="text-[#1877F2] text-4xl" />;
+      return <FaFacebook className={`text-[#1877F2] ${size}`} />;
     case "github":
-      return <FaGithub className="text-[#181717] text-4xl" />;
+      return <FaGithub className={`text-[#181717] ${size}`} />;
     case "amazon":
-      return <FaAmazon className="text-[#FF9900] text-4xl" />;
+      return <FaAmazon className={`text-[#FF9900] ${size}`} />;
     case "twitter":
-      return <FaTwitter className="text-[#1DA1F2] text-4xl" />;
+      return <FaTwitter className={`text-[#1DA1F2] ${size}`} />;
     case "linkedin":
-      return <FaLinkedin className="text-[#0077B5] text-4xl" />;
+      return <FaLinkedin className={`text-[#0077B5] ${size}`} />;
     case "instagram":
-      return <FaInstagram className="text-[#E4405F] text-4xl" />;
+      return <FaInstagram className={`text-[#E4405F] ${size}`} />;
     case "youtube":
-      return <FaYoutube className="text-[#FF0000] text-4xl" />;
+      return <FaYoutube className={`text-[#FF0000] ${size}`} />;
     case "pinterest":
-      return <FaPinterest className="text-[#E60023] text-4xl" />;
+      return <FaPinterest className={`text-[#E60023] ${size}`} />;
     case "snapchat":
-      return <FaSnapchat className="text-[#FFFC00] text-4xl" />;
+      return <FaSnapchat className={`text-[#FFFC00] ${size}`} />;
     case "reddit":
-      return <FaReddit className="text-[#FF4500] text-4xl" />;
+      return <FaReddit className={`text-[#FF4500] ${size}`} />;
     case "tiktok":
-      return <FaTiktok className="text-[#000000] text-4xl" />;
+      return <FaTiktok className={`text-[#000000] ${size}`} />;
     case "whatsapp":
-      return <FaWhatsapp className="text-[#25D366] text-4xl" />;
+      return <FaWhatsapp className={`text-[#25D366] ${size}`} />;
     case "telegram":
-      return <FaTelegram className="text-[#0088CC] text-4xl" />;
+      return <FaTelegram className={`text-[#0088CC] ${size}`} />;
     case "discord":
-      return <FaDiscord className="text-[#7289DA] text-4xl" />;
+      return <FaDiscord className={`text-[#7289DA] ${size}`} />;
     case "apple":
-      return <FaApple className="text-[#000000] text-4xl" />;
+      return <FaApple className={`text-[#000000] ${size}`} />;
     case "microsoft":
-      return <FaMicrosoft className="text-[#F25022] text-4xl" />;
+      return <FaMicrosoft className={`text-[#F25022] ${size}`} />;
     case "spotify":
-      return <FaSpotify className="text-[#1DB954] text-4xl" />;
+      return <FaSpotify className={`text-[#1DB954] ${size}`} />;
     case "slack":
-      return <FaSlack className="text-[#4A154B] text-4xl" />;
+      return <FaSlack className={`text-[#4A154B] ${size}`} />;
     case "dropbox":
-      return <FaDropbox className="text-[#0061FF] text-4xl" />;
+      return <FaDropbox className={`text-[#0061FF] ${size}`} />;
     case "twitch":
-      return <FaTwitch className="text-[#9146FF] text-4xl" />;
+      return <FaTwitch className={`text-[#9146FF] ${size}`} />;
     case "vimeo":
-      return <FaVimeo className="text-[#1AB7EA] text-4xl" />;
+      return <FaVimeo className={`text-[#1AB7EA] ${size}`} />;
     case "flickr":
-      return <FaFlickr className="text-[#FF0084] text-4xl" />;
+      return <FaFlickr className={`text-[#FF0084] ${size}`} />;
     case "dribbble":
-      return <FaDribbble className="text-[#EA4C89] text-4xl" />;
+      return <FaDribbble className={`text-[#EA4C89] ${size}`} />;
     case "behance":
-      return <FaBehance className="text-[#1769FF] text-4xl" />;
+      return <FaBehance className={`text-[#1769FF] ${size}`} />;
     default:
-      return <RiDoorLockLine className="text-4xl" />;
+      return <RiDoorLockLine className={size} />;
   }
 };
 
