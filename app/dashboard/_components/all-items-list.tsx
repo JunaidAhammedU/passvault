@@ -4,25 +4,30 @@ import React, { useEffect, useState } from "react";
 import getIcon from "./icons";
 import axios from "axios";
 
+interface PassItem {
+  _id: string;
+  label: string;
+  username: string;
+}
+
 export default function AllItemsList() {
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<PassItem[]>([]);
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
 
-  // Fetch data with pagination and search
   const handleFetch = async () => {
     setIsLoading(true);
     try {
       const response = await axios.get("/api/get-all-pass", {
         params: {
-          page: 1,
+          page,
           limit: 10,
         },
       });
       setPage(response.data.page);
-      setTotalPages(response.data);
-      setData(response.data);
+      setTotalPages(response.data.totalPages);
+      setData(response.data.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -34,6 +39,14 @@ export default function AllItemsList() {
     handleFetch();
   }, [page]);
 
+  const handleNextPage = () => {
+    if (page < totalPages) setPage((prev) => prev + 1);
+  };
+
+  const handlePrevPage = () => {
+    if (page > 1) setPage((prev) => prev - 1);
+  };
+
   return (
     <div className="bg-white shadow-sm relative rounded-xl px-6 py-9 mt-4">
       <h1 className="text-[20px] font-semibold">Explore</h1>
@@ -42,7 +55,7 @@ export default function AllItemsList() {
         <div className="text-center mt-8">Loading...</div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-8">
-          {data.map((item: any) => (
+          {data.map((item) => (
             <div
               key={item._id}
               className="flex items-center gap-5 cursor-pointer p-2 shadow-sm rounded-lg bg-slate-400"
@@ -58,6 +71,24 @@ export default function AllItemsList() {
           ))}
         </div>
       )}
+
+      {/* Pagination Controls */}
+      <div className="flex justify-between mt-4">
+        <button
+          onClick={handlePrevPage}
+          disabled={page === 1}
+          className="bg-gray-300 px-4 py-2 rounded"
+        >
+          Previous
+        </button>
+        <button
+          onClick={handleNextPage}
+          disabled={page === totalPages}
+          className="bg-gray-300 px-4 py-2 rounded"
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 }

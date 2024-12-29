@@ -7,8 +7,11 @@ export async function GET(req: Request) {
     await connectToDatabase();
 
     const url = new URL(req.url);
-    const page = parseInt(url.searchParams.get("page") || "1", 10);
-    const limit = parseInt(url.searchParams.get("limit") || "10", 10);
+    const page = Math.max(parseInt(url.searchParams.get("page") || "1", 10), 1);
+    const limit = Math.max(
+      parseInt(url.searchParams.get("limit") || "10", 10),
+      1
+    );
     const skip = (page - 1) * limit;
 
     const pass = await Passwords.find({})
