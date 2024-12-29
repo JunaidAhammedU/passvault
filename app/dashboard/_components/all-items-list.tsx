@@ -6,7 +6,6 @@ import axios from "axios";
 
 export default function AllItemsList() {
   const [data, setData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
   const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
@@ -15,8 +14,15 @@ export default function AllItemsList() {
   const handleFetch = async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get("/api/get-all-pass");
-      setData(response.data.pass);
+      const response = await axios.get("/api/get-all-pass", {
+        params: {
+          page: 1,
+          limit: 10,
+        },
+      });
+      setPage(response.data.page);
+      setTotalPages(response.data);
+      setData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
     } finally {
@@ -26,7 +32,7 @@ export default function AllItemsList() {
 
   useEffect(() => {
     handleFetch();
-  }, [searchQuery, page]);
+  }, [page]);
 
   return (
     <div className="bg-white shadow-sm relative rounded-xl px-6 py-9 mt-4">
