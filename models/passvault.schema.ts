@@ -5,6 +5,7 @@ export interface PassDocument extends Document {
   username: string;
   password: string;
   tag: any;
+  isFavorite: boolean;
   createdAt: Date;
 }
 
@@ -14,6 +15,7 @@ const PassvaultSchema: Schema<PassDocument> = new Schema({
   password: { type: String, required: true },
   // tag: { type: Schema.Types.ObjectId, ref: "Tag" },
   tag: { type: String },
+  isFavorite: { type: Boolean, default: false },
   createdAt: { type: Date, default: Date.now },
 });
 

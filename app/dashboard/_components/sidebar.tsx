@@ -12,6 +12,7 @@ import {
 } from "react-icons/io";
 import { HiOutlineTag } from "react-icons/hi2";
 import { FaHashtag } from "react-icons/fa6";
+import Link from "next/link";
 
 export default function Sidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,22 +58,22 @@ export default function Sidebar() {
 
           <ul className="space-y-2 font-medium mt-2">
             <li>
-              <a
-                href="#"
+              <Link
+                href="/dashboard/manage-password/home"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <IoMdFingerPrint className="2xl" />
                 <span className="ml-3">Home</span>
-              </a>
+              </Link>
             </li>
             <li>
-              <a
-                href="#"
+              <Link
+                href="/dashboard/manage-password/all-items"
                 className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <IoFileTrayFullOutline className="text-xl" />
                 <span className="flex-1 ml-3 whitespace-nowrap">All Items</span>
-              </a>
+              </Link>
             </li>
           </ul>
           <div className="mt-2 ">
