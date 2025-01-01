@@ -78,6 +78,10 @@ function AllItemDialoge({ openOutputDialog, closeOutputDialog, data }: any) {
         >
           Close
         </Button>
+        <p className="text-center text-sm text-gray-500">
+          Click on the blurred password to reveal it. <br /> You can copy it by
+          clicking the copy icon.
+        </p>
       </AlertDialogContent>
     </AlertDialog>
   );
