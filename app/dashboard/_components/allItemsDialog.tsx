@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -12,13 +12,20 @@ import { useToast } from "@/lib/hooks/use-toast";
 import { FaRegCopy } from "react-icons/fa";
 import getIcon from "./icons";
 import { FaStar } from "react-icons/fa";
+import { decryptData } from "@/lib/cryptoHelper";
 
 function AllItemDialoge({ openOutputDialog, closeOutputDialog, data }: any) {
   const { toast } = useToast();
   const [isClicked, setIsClicked] = useState(false);
 
+  useEffect(() => {
+    if (openOutputDialog) {
+      setIsClicked(false);
+    }
+  }, [openOutputDialog]);
+
   const handleCopy = () => {
-    navigator.clipboard.writeText("sasa");
+    navigator.clipboard.writeText(decryptData(data?.password));
     toast({
       description: "Copied to clipboard!",
     });
@@ -54,7 +61,7 @@ function AllItemDialoge({ openOutputDialog, closeOutputDialog, data }: any) {
               onClick={() => setIsClicked(true)}
             >
               <h1 className={`${!isClicked ? "blur-sm" : ""}`}>
-                {isClicked ? data?.password : "********"}
+                {isClicked ? decryptData(data?.password) : "********"}
               </h1>
               <FaRegCopy
                 className="absolute right-3 text-gray-600 cursor-pointer hover:text-gray-900"
