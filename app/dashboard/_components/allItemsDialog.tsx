@@ -9,26 +9,43 @@ import {
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/lib/hooks/use-toast";
-import { FaRegCopy } from "react-icons/fa";
+import { FaRegCopy, FaStar } from "react-icons/fa";
 import getIcon from "./icons";
-import { FaStar } from "react-icons/fa";
 import { decryptData } from "@/lib/cryptoHelper";
+import axios from "axios";
 
-function AllItemDialoge({ openOutputDialog, closeOutputDialog, data }: any) {
+function AllItemDialog({ openOutputDialog, closeOutputDialog, data }: any) {
   const { toast } = useToast();
-  const [isClicked, setIsClicked] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   useEffect(() => {
     if (openOutputDialog) {
-      setIsClicked(false);
+      setIsPasswordVisible(false);
     }
   }, [openOutputDialog]);
 
   const handleCopy = () => {
-    navigator.clipboard.writeText(decryptData(data?.password));
+    const decryptedPassword = decryptData(data?.password);
+    navigator.clipboard.writeText(decryptedPassword);
     toast({
-      description: "Copied to clipboard!",
+      description: "Password copied to clipboard!",
     });
+  };
+
+  // Function to mark password as favorite
+  const handleFavorite = async () => {
+    try {
+      const response = await axios.put("/api/make-fav-pwd", { id: data._id });
+      if (response.status === 200) {
+        toast({
+          description: response.data.message,
+        });
+      }
+    } catch (error) {
+      toast({
+        description: "Failed to mark as favorite. Please try again.",
+      });
+    }
   };
 
   return (
@@ -40,7 +57,10 @@ function AllItemDialoge({ openOutputDialog, closeOutputDialog, data }: any) {
             <AlertDialogTitle className="text-center text-lg sm:text-xl md:text-2xl">
               {data?.label}
             </AlertDialogTitle>
-            <FaStar className="absolute top-0 right-0 text-sm sm:text-xl" />
+            <FaStar
+              onClick={handleFavorite}
+              className="absolute top-0 right-0 text-sm sm:text-xl cursor-pointer text-gray-400 hover:text-yellow-500"
+            />
           </div>
         </AlertDialogHeader>
         <div className="grid gap-4 py-4">
@@ -58,15 +78,18 @@ function AllItemDialoge({ openOutputDialog, closeOutputDialog, data }: any) {
             </label>
             <div
               className="border border-gray-300 text-black col-span-1 sm:col-span-3 rounded-md h-10 flex items-center px-4 relative cursor-pointer"
-              onClick={() => setIsClicked(true)}
+              onClick={() => setIsPasswordVisible((prev) => !prev)}
             >
-              <h1 className={`${!isClicked ? "blur-sm" : ""}`}>
-                {isClicked ? decryptData(data?.password) : "********"}
+              <h1 className={`${!isPasswordVisible ? "blur-sm" : ""}`}>
+                {isPasswordVisible ? decryptData(data?.password) : "********"}
               </h1>
-              {isClicked && (
+              {isPasswordVisible && (
                 <FaRegCopy
                   className="absolute right-3 text-gray-600 cursor-pointer hover:text-gray-900"
-                  onClick={handleCopy}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleCopy();
+                  }}
                 />
               )}
             </div>
@@ -87,4 +110,4 @@ function AllItemDialoge({ openOutputDialog, closeOutputDialog, data }: any) {
   );
 }
 
-export default AllItemDialoge;
+export default AllItemDialog;

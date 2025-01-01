@@ -26,7 +26,7 @@ export async function PUT(req: Request) {
     }
 
     return NextResponse.json(
-      { message: "Password marked as favourite successfully" },
+      { message: "Password marked as favorite successfully" },
       { status: 200 }
     );
   } catch (error: any) {
