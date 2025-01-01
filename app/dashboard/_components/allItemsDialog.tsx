@@ -57,16 +57,18 @@ function AllItemDialoge({ openOutputDialog, closeOutputDialog, data }: any) {
               Password
             </label>
             <div
-              className="border border-gray-300 text-black col-span-1 sm:col-span-3 rounded-md h-10 flex items-center px-4 relative"
+              className="border border-gray-300 text-black col-span-1 sm:col-span-3 rounded-md h-10 flex items-center px-4 relative cursor-pointer"
               onClick={() => setIsClicked(true)}
             >
               <h1 className={`${!isClicked ? "blur-sm" : ""}`}>
                 {isClicked ? decryptData(data?.password) : "********"}
               </h1>
-              <FaRegCopy
-                className="absolute right-3 text-gray-600 cursor-pointer hover:text-gray-900"
-                onClick={handleCopy}
-              />
+              {isClicked && (
+                <FaRegCopy
+                  className="absolute right-3 text-gray-600 cursor-pointer hover:text-gray-900"
+                  onClick={handleCopy}
+                />
+              )}
             </div>
           </div>
         </div>
