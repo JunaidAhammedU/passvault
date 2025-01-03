@@ -17,6 +17,7 @@ import axios from "axios";
 function AllItemDialog({ openOutputDialog, closeOutputDialog, data }: any) {
   const { toast } = useToast();
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [isFavorite, setIsFavorite] = useState(data?.isFavorite || false);
 
   useEffect(() => {
     if (openOutputDialog) {
@@ -32,16 +33,17 @@ function AllItemDialog({ openOutputDialog, closeOutputDialog, data }: any) {
     });
   };
 
-  // Function to mark password as favorite
   const handleFavorite = async () => {
     try {
       const response = await axios.put("/api/make-fav-pwd", { id: data._id });
       if (response.status === 200) {
+        setIsFavorite(true); // Update UI
         toast({
           description: response.data.message,
         });
       }
     } catch (error) {
+      console.error("Failed to mark as favorite:", error);
       toast({
         description: "Failed to mark as favorite. Please try again.",
       });
@@ -59,7 +61,11 @@ function AllItemDialog({ openOutputDialog, closeOutputDialog, data }: any) {
             </AlertDialogTitle>
             <FaStar
               onClick={handleFavorite}
-              className="absolute top-0 right-0 text-sm sm:text-xl cursor-pointer text-gray-400 hover:text-yellow-500"
+              className={`absolute top-0 right-0 text-sm sm:text-xl cursor-pointer ${
+                isFavorite
+                  ? "text-yellow-500"
+                  : "text-gray-400 hover:text-yellow-500"
+              }`}
             />
           </div>
         </AlertDialogHeader>

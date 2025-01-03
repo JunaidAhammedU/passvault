@@ -1,6 +1,7 @@
 import Passvault from "@/models/passvault.schema";
 import connectToDatabase from "@/config/db";
 import { NextResponse } from "next/server";
+import mongoose from "mongoose";
 
 export async function PUT(req: Request) {
   await connectToDatabase();
@@ -8,13 +9,13 @@ export async function PUT(req: Request) {
   try {
     const { id } = await req.json();
 
-    if (!id) {
-      return NextResponse.json({ error: "ID is required" }, { status: 400 });
+    if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json({ error: "Invalid ID" }, { status: 400 });
     }
 
     const updatedPassvault = await Passvault.findByIdAndUpdate(
       id,
-      { isFavourite: true },
+      { isFavorite: true },
       { new: true }
     );
 
