@@ -49,7 +49,7 @@ export default function AllItemsList() {
       setTotalPages(response.data.totalPages);
       setData(response.data.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      alert("Error fetching data");
     } finally {
       setIsLoading(false);
     }
