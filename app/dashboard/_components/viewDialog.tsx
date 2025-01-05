@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AlertDialog,
   AlertDialogContent,
@@ -10,14 +10,22 @@ import {
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/lib/hooks/use-toast";
 import { FaRegCopy } from "react-icons/fa";
+import { decryptData } from "@/lib/cryptoHelper";
 
 function ViewDialoge({ openOutputDialog, closeOutputDialog, name, url }: any) {
   const { toast } = useToast();
   const [isClicked, setIsClicked] = useState(false);
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const handleCopy = () => {
     navigator.clipboard.writeText(url);
   };
+
+  useEffect(() => {
+    if (openOutputDialog) {
+      setIsPasswordVisible(false);
+    }
+  }, [openOutputDialog]);
 
   return (
     <AlertDialog open={openOutputDialog}>
@@ -49,7 +57,7 @@ function ViewDialoge({ openOutputDialog, closeOutputDialog, name, url }: any) {
                   !isClicked ? `absolute bottom-1` : `items-center`
                 }`}
               >
-                {isClicked ? url : "********"}
+                {isClicked ? decryptData(url) : "********"}
               </h1>
               <FaRegCopy
                 className="absolute right-3 text-gray-600 cursor-pointer hover:text-gray-900"

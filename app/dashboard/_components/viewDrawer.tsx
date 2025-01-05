@@ -8,6 +8,7 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from "@/components/ui/drawer";
+import { decryptData } from "@/lib/cryptoHelper";
 import { useState } from "react";
 import { FaRegCopy } from "react-icons/fa6";
 
@@ -49,7 +50,7 @@ export function ViewDrawer({
                   !isClicked ? `absolute bottom-1` : `items-center`
                 }`}
               >
-                {isClicked ? url : "********"}
+                {isClicked ? decryptData(url) : "********"}
               </h1>
               <FaRegCopy
                 className="absolute right-3 text-gray-600 cursor-pointer hover:text-gray-900"
