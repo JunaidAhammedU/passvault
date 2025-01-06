@@ -12,8 +12,11 @@ import { TbClipboardCheck, TbClipboardText, TbSparkles } from "react-icons/tb";
 import ManagePassDialoge from "../_components/manage.pass.dialog";
 import { useToast } from "@/lib/hooks/use-toast";
 import { ToastAction } from "@/components/ui/toast";
+import { useUser } from "@clerk/nextjs";
 
 export default function Page() {
+  const { user } = useUser();
+  const userEmail = user?.primaryEmailAddress?.emailAddress;
   const { toast } = useToast();
   const [length, setLength] = useState(4);
   const [isCopied, setIsCopied] = useState(false);
@@ -183,6 +186,7 @@ export default function Page() {
         openOutputDialog={openOutput}
         closeOutputDialog={() => setOpenOutput(false)}
         password={password}
+        userEmail={userEmail}
       />
     </>
   );

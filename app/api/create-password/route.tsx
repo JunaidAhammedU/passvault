@@ -8,7 +8,7 @@ export async function POST(req: Request) {
 
   try {
     const body = await req.json();
-    const { label, username, password, tag } = body;
+    const { label, username, password, tag, email } = body;
 
     if (!label || !username || !password) {
       return NextResponse.json(
@@ -21,6 +21,7 @@ export async function POST(req: Request) {
       label,
       username,
       password: encryptData(password),
+      userEmail: email || "",
       tag,
     });
 

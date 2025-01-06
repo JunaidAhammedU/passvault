@@ -23,6 +23,7 @@ function ManagePassDialoge({
   openOutputDialog,
   closeOutputDialog,
   password,
+  userEmail,
 }: any) {
   const { toast } = useToast();
   const {
@@ -36,6 +37,7 @@ function ManagePassDialoge({
   // form submit.
   const onSubmit = async (data: any) => {
     try {
+      data.email = userEmail;
       const res = await axios.post("/api/create-password", data);
       setLoading(true);
       if (res.status === 201) {
