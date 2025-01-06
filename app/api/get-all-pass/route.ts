@@ -12,6 +12,7 @@ export async function GET(req: Request) {
       parseInt(url.searchParams.get("limit") || "10", 10),
       1
     );
+    const email = url.searchParams.get("email");
     const skip = (page - 1) * limit;
 
     const pass = await Passwords.find({})
