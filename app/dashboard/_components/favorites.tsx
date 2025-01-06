@@ -7,8 +7,11 @@ import { ViewDrawer } from "./viewDrawer";
 import ViewDialoge from "./viewDialog";
 import axios from "axios";
 import { SkeletonDiv } from "./skeleton";
+import { useUser } from "@clerk/nextjs";
 
 export default function Favorites() {
+  const { user } = useUser();
+  const userEmail = user?.primaryEmailAddress?.emailAddress;
   const [openOutput, setOpenOutput] = useState(false);
   const [selectedFavorite, setSelectedFavorite] = useState<any>({});
   const [isMobile, setIsMobile] = useState(false);
