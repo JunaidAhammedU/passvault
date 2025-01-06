@@ -17,6 +17,7 @@ import {
 import { decryptData } from "@/lib/cryptoHelper";
 import { useToast } from "@/lib/hooks/use-toast";
 import AllItemDialoge from "./allItemsDialog";
+import { useUser } from "@clerk/nextjs";
 
 interface PassItem {
   _id: string;
@@ -27,6 +28,7 @@ interface PassItem {
 }
 
 export default function AllItemsList() {
+  const { user } = useUser();
   const { toast } = useToast();
   const [data, setData] = useState<PassItem[]>([]);
   const [page, setPage] = useState(1);
