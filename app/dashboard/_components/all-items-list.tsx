@@ -29,6 +29,7 @@ interface PassItem {
 
 export default function AllItemsList() {
   const { user } = useUser();
+  const userEmail = user?.primaryEmailAddress?.emailAddress;
   const { toast } = useToast();
   const [data, setData] = useState<PassItem[]>([]);
   const [page, setPage] = useState(1);
@@ -45,6 +46,7 @@ export default function AllItemsList() {
         params: {
           page,
           limit: 10,
+          email: userEmail,
         },
       });
       setPage(response.data.page);
