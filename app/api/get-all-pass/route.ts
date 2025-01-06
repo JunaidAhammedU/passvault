@@ -13,9 +13,15 @@ export async function GET(req: Request) {
       1
     );
     const email = url.searchParams.get("email");
+    if (!email) {
+      return NextResponse.json(
+        { error: "Email query parameter is required" },
+        { status: 400 }
+      );
+    }
     const skip = (page - 1) * limit;
 
-    const pass = await Passwords.find({})
+    const pass = await Passwords.find({ userEmail: email })
       .sort({ createdAt: -1 })
       .skip(skip)
       .limit(limit);
