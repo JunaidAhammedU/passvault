@@ -5,14 +5,19 @@ import React, { useEffect, useState } from "react";
 import { LuHistory } from "react-icons/lu";
 import getIcon from "./icons";
 import { SkeletonDiv } from "./skeleton";
+import { useUser } from "@clerk/nextjs";
 
 export default function RecentlyCreated() {
+  const { user } = useUser();
+  const userEmail = user?.primaryEmailAddress?.emailAddress;
   const [data, setData] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   const handleFetch = async () => {
     try {
-      const response = await axios.get("/api/recently-created");
+      const response = await axios.get("/api/recently-created", {
+        params: { email: userEmail },
+      });
       setData(response.data);
     } catch (error) {
       console.log(error);
