@@ -38,7 +38,9 @@ export default function Favorites() {
   const fetchData = async () => {
     try {
       setLoading(true);
-      const response = await axios.get("/api/favorite-pwd");
+      const response = await axios.get("/api/favorite-pwd", {
+        params: { email: userEmail },
+      });
       setData(response.data);
       setLoading(false);
     } catch (error) {
