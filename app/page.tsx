@@ -24,7 +24,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center px-4 sm:px-8">
+      <div className="min-h-screen flex items-center justify-center px-4 sm:px-8 mt-10 md:mt-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 sm:p-5 md:px-6 xl:gap-32">
           <div className="flex flex-col text-start justify-center items-center relative">
             <div className="text-start mt-12 lg:mt-24">
@@ -62,7 +62,7 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="flex justify-center items-center p-10 md:p-2">
+          <div className="flex justify-center items-center p-5 md:p-2">
             <Image
               src="/landing2.png"
               alt="Password management illustration"
