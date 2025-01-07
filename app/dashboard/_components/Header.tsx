@@ -9,9 +9,6 @@ import { UserDetailContext } from "@/app/_context/userDetailsCOntext";
 const Navbar = () => {
   const context = useContext(UserDetailContext);
   const { user } = useUser();
-  // if (!context) {
-  //   return null;
-  // }
   return (
     <nav className="flex flex-wrap items-center justify-between px-6 py-4 z-50 fixed w-full top-0 border-b border-gray-200 bg-white">
       <Link href={"/"}>
@@ -27,6 +24,16 @@ const Navbar = () => {
           <span className="pl-2 mb-2 text-xl font-bold">passvault</span>
         </div>
       </Link>
+
+      <div className="hidden md:flex absolute right-24">
+        <Link href={"/"}>div</Link>
+        <Link href={"/about"}>
+          <p className="hidden md:block ml-4">About</p>
+        </Link>
+        <Link href={"/contact"}>
+          <p className="hidden md:block ml-4">Contact</p>
+        </Link>
+      </div>
 
       <div className="hidden md:flex">
         {user?.primaryEmailAddress?.emailAddress ? (
