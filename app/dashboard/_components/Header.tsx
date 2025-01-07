@@ -26,7 +26,6 @@ const Navbar = () => {
       </Link>
 
       <div className="hidden md:flex absolute right-24 gap-3">
-        {/* link */}
         <Link href={"/dashboard/manage-password/home"}>
           <div className="py-6 px-5 text-gray-700 hover:text-black  translate duration-300 ">
             Manage
