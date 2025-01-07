@@ -25,13 +25,16 @@ const Navbar = () => {
         </div>
       </Link>
 
-      <div className="hidden md:flex absolute right-24">
-        <Link href={"/"}>div</Link>
-        <Link href={"/about"}>
-          <p className="hidden md:block ml-4">About</p>
+      <div className="hidden md:flex absolute right-24 gap-3">
+        <Link href={"/dashboard/manage-password/home"}>
+          <div className="py-6 px-5 text-gray-700 hover:text-black  translate duration-300 ">
+            Manage
+          </div>
         </Link>
-        <Link href={"/contact"}>
-          <p className="hidden md:block ml-4">Contact</p>
+        <Link href={"/dashboard/manage-password/all-items"}>
+          <div className="py-6 px-5 text-gray-700 hover:text-black  translate duration-300 ">
+            Explore
+          </div>
         </Link>
       </div>
 
