@@ -97,7 +97,7 @@ export default function AllItemsList() {
 
         {isLoading ? (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 overflow-y-auto h-[80%] items-center">
-            <div className="text-center mt-8">Loading...</div>
+            <div className="text-center mt-8">Loading....</div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8 overflow-y-auto h-[80%] items-center">
