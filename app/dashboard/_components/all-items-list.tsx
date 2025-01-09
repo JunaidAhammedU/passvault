@@ -92,7 +92,7 @@ export default function AllItemsList() {
       <div className="bg-white shadow-sm relative rounded-xl px-6 py-9 mt-4 h-[95%] md:h-[800px]">
         <div className="flex items-center gap-2 absolute top-4 left-6">
           <FaWpexplorer className="text-2xl" />
-          <h1 className="text-[20px] font-semibold">Explore</h1>
+          <h1 className="text-[20px] font-semibold">Explore.</h1>
         </div>
 
         {isLoading ? (
