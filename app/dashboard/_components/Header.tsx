@@ -5,6 +5,7 @@ import { UserButton, useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import { useContext, useState } from "react";
 import { UserDetailContext } from "@/app/_context/userDetailsCOntext";
+import { RiApps2Line, RiApps2AiLine } from "react-icons/ri";
 
 const Navbar = () => {
   const context = useContext(UserDetailContext);
@@ -56,23 +57,10 @@ const Navbar = () => {
 
       <div className="md:hidden flex items-center relative">
         <button className="focus:outline-none" onClick={toggleDropdown}>
-          <svg
-            className="w-6 h-6 text-gray-700"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M4 6h16M4 12h16m-7 6h7"
-            ></path>
-          </svg>
+          <RiApps2Line className="text-2xl" />
         </button>
         {dropdownOpen && (
-          <div className="absolute right-0 mt-2 w-48 bg-white border border-gray-200 rounded shadow-lg">
+          <div className="absolute top-5 right-5 mt-2 w-48 border border-gray-200 rounded shadow-lg bg-red-500">
             <Link href={"/dashboard/manage-password/home"}>
               <div className="py-2 px-4 text-gray-700 hover:text-black hover:bg-gray-100">
                 Manage
