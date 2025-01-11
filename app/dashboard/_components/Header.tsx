@@ -57,10 +57,18 @@ const Navbar = () => {
 
       <div className="md:hidden flex items-center relative">
         <button className="focus:outline-none" onClick={toggleDropdown}>
-          <RiApps2Line className="text-2xl" />
+          {dropdownOpen ? (
+            <RiApps2AiLine className="text-2xl" />
+          ) : (
+            <RiApps2Line className="text-2xl" />
+          )}
         </button>
         {dropdownOpen && (
-          <div className="absolute top-5 right-5 mt-2 w-48 border border-gray-200 rounded shadow-lg bg-red-500">
+          <div
+            className={`absolute top-5 right-0 mt-2 w-48 border border-gray-200 rounded shadow-xl bg-white transition-all duration-300 ${
+              dropdownOpen ? "opacity-100 scale-100" : "opacity-0 scale-95"
+            }`}
+          >
             <Link href={"/dashboard/manage-password/home"}>
               <div className="py-2 px-4 text-gray-700 hover:text-black hover:bg-gray-100">
                 Manage
