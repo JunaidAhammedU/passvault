@@ -17,7 +17,6 @@ const passwordGenerator = () => {
       (checkbox: any) => checkbox.state
     );
 
-    // handling the error if user not selected the option
     if (selectedOption.length === 0) {
       toast.error("Select at least one option");
       setErrorMessage("Please select any option from this.");
